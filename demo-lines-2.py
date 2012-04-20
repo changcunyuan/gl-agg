@@ -13,10 +13,8 @@ size = 512,512
 dpi = 72.0
 figsize= size[0]/float(dpi),size[1]/float(dpi)
 fig = plt.figure(figsize=figsize, dpi=dpi, facecolor="white")
-fig.canvas.set_window_title('AGG bezier') 
 
-
-axes = fig.add_axes([0.0, 0.0, 1.0, 1.0])
+axes = fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
 axes.set_xlim(0,size[0])
 axes.set_ylim(0,size[1])
 
