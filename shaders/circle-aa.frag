@@ -37,7 +37,7 @@ void main()
     float thickness = p.w;
 
     vec4 color   = gl_Color;
-    float dist   = sqrt(((p.x-0.5)*(p.x-0.5)+(p.y-0.5)*(p.y-0.5)));
+    float dist   = sqrt((p.x*p.x+p.y*p.y));
     float width  = fwidth(dist);
     if( radius < 0.5 )
     {
@@ -45,14 +45,14 @@ void main()
     }
     if( thickness == 0.0 )
     {
-        float alpha  = smoothstep(0.5-width,0.5+width, dist);
+        float alpha  = smoothstep(1.0-width,1.0+width, dist);
         gl_FragColor = vec4(color.rgb,
                 min(2.0*radius,1.0)*min((1.0-alpha), min(pow(radius,2.2),1.0)) );
     }
     else {
-        float r = .5*(radius-0.5*thickness)/radius;
-        float alpha1  = smoothstep(0.5-width,0.5+width, dist);
-        float alpha2  = smoothstep(r+width,r-width, dist);
+        float r = (radius-0.5*thickness)/radius;
+        float alpha1  = smoothstep(1.0-width,1.0+width, dist);
+        float alpha2  = smoothstep(  r+width,  r-width, dist);
         gl_FragColor = vec4(color.rgb,
                 (1.0-max(alpha1,alpha2)) * min(pow(thickness,1.0/2.2),1.0));
     }
