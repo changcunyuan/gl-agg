@@ -41,8 +41,9 @@
 #include <string.h>
 #include <assert.h>
 
-#include "lines.h"
-#include "curves.h"
+#include "line.h"
+#include "curve.h"
+#include "circle.h"
 #include "vector.h"
 #include "vec234.h"
 #include "matrix.h"

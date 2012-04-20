@@ -40,7 +40,7 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
-#include "curves.h"
+#include "curve.h"
 
 
 const double curve_distance_epsilon                  = 1e-30;
