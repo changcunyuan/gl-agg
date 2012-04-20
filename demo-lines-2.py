@@ -38,5 +38,5 @@ for i in range(n):
     axes.add_patch(patch)
 
 plt.xticks([]),plt.yticks([])
+fig.savefig('agg-lines-2.png', dpi=dpi)
 plt.show()
-#fig.savefig('agg-bezier-2.png', dpi=dpi)
