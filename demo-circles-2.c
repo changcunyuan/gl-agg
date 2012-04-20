@@ -36,7 +36,7 @@
 typedef struct {
     vec3  vertex;      
     vec4  color;
-    vec3  tex_coord;
+    vec4  tex_coord;
 } vertex_t;
 
 
@@ -105,7 +105,7 @@ main( int argc, char **argv )
     glutReshapeFunc( reshape );
     glutKeyboardFunc( keyboard );
 
-    buffer = vertex_buffer_new( "v3f:c4f:t3f" ); 
+    buffer = vertex_buffer_new( "v3f:c4f:t4f" ); 
     program = shader_load( "shaders/default.vert",
                            "shaders/circle-aa.frag" );
     vec4 color = {{0,0,0,1}};
@@ -121,7 +121,7 @@ main( int argc, char **argv )
         float y = 256+radius*sin(theta);
         float r = 10.1-i*0.02;
         radius -= 0.45;
-        vertex_buffer_add_circle( buffer, x, y, r, color );
+        vertex_buffer_add_circle( buffer, x, y, r, color, 1.0 );
     }
     glutMainLoop();
     return 0;

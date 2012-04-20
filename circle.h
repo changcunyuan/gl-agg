@@ -50,6 +50,6 @@
   void
   vertex_buffer_add_circle( vertex_buffer_t * self,
                             double cx, double cy, double radius,
-                            vec4 color );
+                            vec4 color, double thickness );
 
 #endif /* __CIRCLE_H__ */

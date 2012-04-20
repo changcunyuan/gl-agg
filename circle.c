@@ -38,12 +38,12 @@
 void
 vertex_buffer_add_circle( vertex_buffer_t * self,
                           double cx, double cy, double radius,
-                          vec4 color )
+                          vec4 color, double thickness )
 {
-    typedef struct { vec3 vertex; vec4 color; vec3 tex_coord; } vertex_t;
+    typedef struct { vec3 vertex; vec4 color; vec4 tex_coord; } vertex_t;
 
     assert( self );
-    assert( strcmp( vertex_buffer_format( self ), "v3f:c4f:t3f" ) == 0 );
+    assert( strcmp( vertex_buffer_format( self ), "v3f:c4f:t4f" ) == 0 );
 
     float wx  = radius+1.1;
     float tx1 = -wx/(wx-1.0)+1.0;
@@ -54,10 +54,10 @@ vertex_buffer_add_circle( vertex_buffer_t * self,
     float ty2 = +wy/(wy-1.0);
 
     vertex_t vertices[4] = {
-        { {{cx-wx, cy-wy, 0.0}}, color, {{tx1, ty1, radius}} },
-        { {{cx+wx, cy-wy, 0.0}}, color, {{tx2, ty1, radius}} },
-        { {{cx+wx, cy+wy, 0.0}}, color, {{tx2, ty2, radius}} },
-        { {{cx-wx, cy+wy, 0.0}}, color, {{tx1, ty2, radius}} } };
+        { {{cx-wx, cy-wy, 0}}, color, {{tx1, ty1, radius, thickness}} },
+        { {{cx+wx, cy-wy, 0}}, color, {{tx2, ty1, radius, thickness}} },
+        { {{cx+wx, cy+wy, 0}}, color, {{tx2, ty2, radius, thickness}} },
+        { {{cx-wx, cy+wy, 0}}, color, {{tx1, ty2, radius, thickness}} } };
     GLuint indices[6] = { 0,1,2, 0,2,3 };
 
     vertex_buffer_append( self, vertices, 4, indices,  6 );
