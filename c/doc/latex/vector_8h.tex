@@ -1,0 +1,71 @@
+\hypertarget{vector_8h}{
+\section{vector.h \-File \-Reference}
+\label{vector_8h}\index{vector.\-h@{vector.\-h}}
+}
+
+
+\-Generic vector structure.  
+
+
+{\ttfamily \#include $<$stddef.\-h$>$}\*
+\subsection*{\-Data \-Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structvector__t}{vector\-\_\-t}
+\begin{DoxyCompactList}\small\item\em \-Generic vector structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structvector__t}{vector\-\_\-t} $\ast$ \hyperlink{group__vector_ga9ab13f896bb29debbbf8175e75751ea5}{vector\-\_\-new} (size\-\_\-t item\-\_\-size)
+\begin{DoxyCompactList}\small\item\em \-Creates a new empty vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gae045e222efa8898716f8322c5667f624}{vector\-\_\-delete} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Deletes a vector. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__vector_gaaf3cd27681da5219d235604b64a278e4}{vector\-\_\-get} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, size\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the item located at specified index. \end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__vector_ga89ea189955bd6c4873aca8288c96ad1b}{vector\-\_\-front} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the first item. \end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__vector_ga1b74708d66280dbf5865bb51e8f5c394}{vector\-\_\-back} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the last item. \end{DoxyCompactList}\item 
+int \hyperlink{group__vector_ga3449b56bc57599ceca39ee5960057ac4}{vector\-\_\-contains} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$item, int($\ast$cmp)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em \-Check if an item is contained within the vector. \end{DoxyCompactList}\item 
+int \hyperlink{group__vector_ga0d33ab9aaff247d38876b1fe76c4e2ef}{vector\-\_\-empty} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Checks whether the vector is empty. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__vector_ga0103842074bb797fc685b33c0629c05a}{vector\-\_\-size} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga1a1e63e13a4da5587aa0b9369580eb85}{vector\-\_\-reserve} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \-Reserve storage such that it can hold at last size items. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__vector_ga94c636cfdfd80206e765331d8b44651e}{vector\-\_\-capacity} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns current storage capacity. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga0b9c4f4cf48f0c52daa7852aeb7e531c}{vector\-\_\-shrink} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Decrease capacity to fit actual size. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaa24245f42c8bb6f84933133f6a560deb}{vector\-\_\-clear} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Removes all items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga50c566682c6ec48ef8f7f4224c112d03}{vector\-\_\-set} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Replace an item. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga99460cea333533ca48e5cb23c37642f0}{vector\-\_\-erase} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em \-Erase an item. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga089b70be0dbd06c497470359e725b4ef}{vector\-\_\-erase\-\_\-range} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t first, const size\-\_\-t last)
+\begin{DoxyCompactList}\small\item\em \-Erase a range of items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga0934c3049233d3688b7fa74e23536bbf}{vector\-\_\-push\-\_\-back} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Appends given item to the end of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga03f7948a7302fda208afe31bf7f324eb}{vector\-\_\-pop\-\_\-back} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Removes the last item of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gae88ff6d21d8f963ba97790086d18506a}{vector\-\_\-resize} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \-Resizes the vector to contain size items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaa69087a65fe41ccc9a6763053a0db7da}{vector\-\_\-insert} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Insert a single item at specified index. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaea8a2ae4d0d06d93f38b24697a5ac5ec}{vector\-\_\-insert\-\_\-data} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$data, const size\-\_\-t count)
+\begin{DoxyCompactList}\small\item\em \-Insert raw data at specified index. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaabe89daaacdda4c42daf166e2f52f159}{vector\-\_\-push\-\_\-back\-\_\-data} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$data, const size\-\_\-t count)
+\begin{DoxyCompactList}\small\item\em \-Append raw data to the end of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaee95bbc2e143793c2ffdf3f107aac1bd}{vector\-\_\-sort} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, int($\ast$cmp)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em \-Sort vector items according to cmp function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Generic vector structure. \begin{DoxyAuthor}{\-Author}
+\-Nicolas \-Rougier (\href{mailto:Nicolas.Rougier@inria.fr}{\tt \-Nicolas.\-Rougier@inria.\-fr}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{\-Date}
+\-April, 2012 \-The vector structure and accompanying functions loosely mimic the \-S\-T\-L \-C++ vector class. 
+\end{DoxyDate}

@@ -1,0 +1,538 @@
+\hypertarget{group__vector}{
+\section{vector}
+\label{group__vector}\index{vector@{vector}}
+}
+\subsection*{\-Data \-Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structvector__t}{vector\-\_\-t}
+\begin{DoxyCompactList}\small\item\em \-Generic vector structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structvector__t}{vector\-\_\-t} $\ast$ \hyperlink{group__vector_ga9ab13f896bb29debbbf8175e75751ea5}{vector\-\_\-new} (size\-\_\-t item\-\_\-size)
+\begin{DoxyCompactList}\small\item\em \-Creates a new empty vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gae045e222efa8898716f8322c5667f624}{vector\-\_\-delete} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Deletes a vector. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__vector_gaaf3cd27681da5219d235604b64a278e4}{vector\-\_\-get} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, size\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the item located at specified index. \end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__vector_ga89ea189955bd6c4873aca8288c96ad1b}{vector\-\_\-front} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the first item. \end{DoxyCompactList}\item 
+const void $\ast$ \hyperlink{group__vector_ga1b74708d66280dbf5865bb51e8f5c394}{vector\-\_\-back} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns a pointer to the last item. \end{DoxyCompactList}\item 
+int \hyperlink{group__vector_ga3449b56bc57599ceca39ee5960057ac4}{vector\-\_\-contains} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$item, int($\ast$cmp)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em \-Check if an item is contained within the vector. \end{DoxyCompactList}\item 
+int \hyperlink{group__vector_ga0d33ab9aaff247d38876b1fe76c4e2ef}{vector\-\_\-empty} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Checks whether the vector is empty. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__vector_ga0103842074bb797fc685b33c0629c05a}{vector\-\_\-size} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga1a1e63e13a4da5587aa0b9369580eb85}{vector\-\_\-reserve} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \-Reserve storage such that it can hold at last size items. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__vector_ga94c636cfdfd80206e765331d8b44651e}{vector\-\_\-capacity} (const \hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Returns current storage capacity. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga0b9c4f4cf48f0c52daa7852aeb7e531c}{vector\-\_\-shrink} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Decrease capacity to fit actual size. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaa24245f42c8bb6f84933133f6a560deb}{vector\-\_\-clear} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Removes all items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga50c566682c6ec48ef8f7f4224c112d03}{vector\-\_\-set} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Replace an item. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga99460cea333533ca48e5cb23c37642f0}{vector\-\_\-erase} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em \-Erase an item. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga089b70be0dbd06c497470359e725b4ef}{vector\-\_\-erase\-\_\-range} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t first, const size\-\_\-t last)
+\begin{DoxyCompactList}\small\item\em \-Erase a range of items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga0934c3049233d3688b7fa74e23536bbf}{vector\-\_\-push\-\_\-back} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Appends given item to the end of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_ga03f7948a7302fda208afe31bf7f324eb}{vector\-\_\-pop\-\_\-back} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self)
+\begin{DoxyCompactList}\small\item\em \-Removes the last item of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gae88ff6d21d8f963ba97790086d18506a}{vector\-\_\-resize} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \-Resizes the vector to contain size items. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaa69087a65fe41ccc9a6763053a0db7da}{vector\-\_\-insert} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$item)
+\begin{DoxyCompactList}\small\item\em \-Insert a single item at specified index. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaea8a2ae4d0d06d93f38b24697a5ac5ec}{vector\-\_\-insert\-\_\-data} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const size\-\_\-t index, const void $\ast$data, const size\-\_\-t count)
+\begin{DoxyCompactList}\small\item\em \-Insert raw data at specified index. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaabe89daaacdda4c42daf166e2f52f159}{vector\-\_\-push\-\_\-back\-\_\-data} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, const void $\ast$data, const size\-\_\-t count)
+\begin{DoxyCompactList}\small\item\em \-Append raw data to the end of the vector. \end{DoxyCompactList}\item 
+void \hyperlink{group__vector_gaee95bbc2e143793c2ffdf3f107aac1bd}{vector\-\_\-sort} (\hyperlink{structvector__t}{vector\-\_\-t} $\ast$self, int($\ast$cmp)(const void $\ast$, const void $\ast$))
+\begin{DoxyCompactList}\small\item\em \-Sort vector items according to cmp function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{group__vector_ga1b74708d66280dbf5865bb51e8f5c394}{
+\index{vector@{vector}!vector\-\_\-back@{vector\-\_\-back}}
+\index{vector\-\_\-back@{vector\-\_\-back}!vector@{vector}}
+\subsubsection[{vector\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ vector\-\_\-back (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga1b74708d66280dbf5865bb51e8f5c394}
+
+
+\-Returns a pointer to the last item. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+pointer on the last item 
+\end{DoxyReturn}
+\hypertarget{group__vector_ga94c636cfdfd80206e765331d8b44651e}{
+\index{vector@{vector}!vector\-\_\-capacity@{vector\-\_\-capacity}}
+\index{vector\-\_\-capacity@{vector\-\_\-capacity}!vector@{vector}}
+\subsubsection[{vector\-\_\-capacity}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t vector\-\_\-capacity (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga94c636cfdfd80206e765331d8b44651e}
+
+
+\-Returns current storage capacity. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+storage capacity 
+\end{DoxyReturn}
+\hypertarget{group__vector_gaa24245f42c8bb6f84933133f6a560deb}{
+\index{vector@{vector}!vector\-\_\-clear@{vector\-\_\-clear}}
+\index{vector\-\_\-clear@{vector\-\_\-clear}!vector@{vector}}
+\subsubsection[{vector\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-clear (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaa24245f42c8bb6f84933133f6a560deb}
+
+
+\-Removes all items. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga3449b56bc57599ceca39ee5960057ac4}{
+\index{vector@{vector}!vector\-\_\-contains@{vector\-\_\-contains}}
+\index{vector\-\_\-contains@{vector\-\_\-contains}!vector@{vector}}
+\subsubsection[{vector\-\_\-contains}]{\setlength{\rightskip}{0pt plus 5cm}int vector\-\_\-contains (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const void $\ast$}]{item, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$)}]{cmp}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga3449b56bc57599ceca39ee5960057ac4}
+
+
+\-Check if an item is contained within the vector. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em item} & item to be searched in the vector \\
+\hline
+{\em cmp} & a pointer a comparison function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+1 if item is contained within the vector, 0 otherwise 
+\end{DoxyReturn}
+\hypertarget{group__vector_gae045e222efa8898716f8322c5667f624}{
+\index{vector@{vector}!vector\-\_\-delete@{vector\-\_\-delete}}
+\index{vector\-\_\-delete@{vector\-\_\-delete}!vector@{vector}}
+\subsubsection[{vector\-\_\-delete}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-delete (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gae045e222efa8898716f8322c5667f624}
+
+
+\-Deletes a vector. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga0d33ab9aaff247d38876b1fe76c4e2ef}{
+\index{vector@{vector}!vector\-\_\-empty@{vector\-\_\-empty}}
+\index{vector\-\_\-empty@{vector\-\_\-empty}!vector@{vector}}
+\subsubsection[{vector\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}int vector\-\_\-empty (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga0d33ab9aaff247d38876b1fe76c4e2ef}
+
+
+\-Checks whether the vector is empty. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+1 if the vector is empty, 0 otherwise 
+\end{DoxyReturn}
+\hypertarget{group__vector_ga99460cea333533ca48e5cb23c37642f0}{
+\index{vector@{vector}!vector\-\_\-erase@{vector\-\_\-erase}}
+\index{vector\-\_\-erase@{vector\-\_\-erase}!vector@{vector}}
+\subsubsection[{vector\-\_\-erase}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-erase (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga99460cea333533ca48e5cb23c37642f0}
+
+
+\-Erase an item. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em index} & the index of the item to be erased \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga089b70be0dbd06c497470359e725b4ef}{
+\index{vector@{vector}!vector\-\_\-erase\-\_\-range@{vector\-\_\-erase\-\_\-range}}
+\index{vector\-\_\-erase\-\_\-range@{vector\-\_\-erase\-\_\-range}!vector@{vector}}
+\subsubsection[{vector\-\_\-erase\-\_\-range}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-erase\-\_\-range (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{first, }
+\item[{const size\-\_\-t}]{last}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga089b70be0dbd06c497470359e725b4ef}
+
+
+\-Erase a range of items. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em first} & the index of the first item to be erased \\
+\hline
+{\em last} & the index of the last item to be erased \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga89ea189955bd6c4873aca8288c96ad1b}{
+\index{vector@{vector}!vector\-\_\-front@{vector\-\_\-front}}
+\index{vector\-\_\-front@{vector\-\_\-front}!vector@{vector}}
+\subsubsection[{vector\-\_\-front}]{\setlength{\rightskip}{0pt plus 5cm}const void$\ast$ vector\-\_\-front (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga89ea189955bd6c4873aca8288c96ad1b}
+
+
+\-Returns a pointer to the first item. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+pointer on the first item 
+\end{DoxyReturn}
+\hypertarget{group__vector_gaaf3cd27681da5219d235604b64a278e4}{
+\index{vector@{vector}!vector\-\_\-get@{vector\-\_\-get}}
+\index{vector\-\_\-get@{vector\-\_\-get}!vector@{vector}}
+\subsubsection[{vector\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ vector\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{size\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaaf3cd27681da5219d235604b64a278e4}
+
+
+\-Returns a pointer to the item located at specified index. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em index} & the index of the item to be returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+pointer on the specified item 
+\end{DoxyReturn}
+\hypertarget{group__vector_gaa69087a65fe41ccc9a6763053a0db7da}{
+\index{vector@{vector}!vector\-\_\-insert@{vector\-\_\-insert}}
+\index{vector\-\_\-insert@{vector\-\_\-insert}!vector@{vector}}
+\subsubsection[{vector\-\_\-insert}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-insert (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{index, }
+\item[{const void $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaa69087a65fe41ccc9a6763053a0db7da}
+
+
+\-Insert a single item at specified index. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em index} & location before which to insert item \\
+\hline
+{\em item} & the item to be inserted \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_gaea8a2ae4d0d06d93f38b24697a5ac5ec}{
+\index{vector@{vector}!vector\-\_\-insert\-\_\-data@{vector\-\_\-insert\-\_\-data}}
+\index{vector\-\_\-insert\-\_\-data@{vector\-\_\-insert\-\_\-data}!vector@{vector}}
+\subsubsection[{vector\-\_\-insert\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-insert\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{index, }
+\item[{const void $\ast$}]{data, }
+\item[{const size\-\_\-t}]{count}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaea8a2ae4d0d06d93f38b24697a5ac5ec}
+
+
+\-Insert raw data at specified index. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em index} & location before which to insert item \\
+\hline
+{\em data} & a pointer to the items to be inserted \\
+\hline
+{\em count} & the number of items to be inserted \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga9ab13f896bb29debbbf8175e75751ea5}{
+\index{vector@{vector}!vector\-\_\-new@{vector\-\_\-new}}
+\index{vector\-\_\-new@{vector\-\_\-new}!vector@{vector}}
+\subsubsection[{vector\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector\-\_\-t}$\ast$ vector\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{item\-\_\-size}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga9ab13f896bb29debbbf8175e75751ea5}
+
+
+\-Creates a new empty vector. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em item\-\_\-size} & item size in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+a new empty vector 
+\end{DoxyReturn}
+\hypertarget{group__vector_ga03f7948a7302fda208afe31bf7f324eb}{
+\index{vector@{vector}!vector\-\_\-pop\-\_\-back@{vector\-\_\-pop\-\_\-back}}
+\index{vector\-\_\-pop\-\_\-back@{vector\-\_\-pop\-\_\-back}!vector@{vector}}
+\subsubsection[{vector\-\_\-pop\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-pop\-\_\-back (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga03f7948a7302fda208afe31bf7f324eb}
+
+
+\-Removes the last item of the vector. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga0934c3049233d3688b7fa74e23536bbf}{
+\index{vector@{vector}!vector\-\_\-push\-\_\-back@{vector\-\_\-push\-\_\-back}}
+\index{vector\-\_\-push\-\_\-back@{vector\-\_\-push\-\_\-back}!vector@{vector}}
+\subsubsection[{vector\-\_\-push\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-push\-\_\-back (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const void $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga0934c3049233d3688b7fa74e23536bbf}
+
+
+\-Appends given item to the end of the vector. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em item} & the item to be inserted \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_gaabe89daaacdda4c42daf166e2f52f159}{
+\index{vector@{vector}!vector\-\_\-push\-\_\-back\-\_\-data@{vector\-\_\-push\-\_\-back\-\_\-data}}
+\index{vector\-\_\-push\-\_\-back\-\_\-data@{vector\-\_\-push\-\_\-back\-\_\-data}!vector@{vector}}
+\subsubsection[{vector\-\_\-push\-\_\-back\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-push\-\_\-back\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const void $\ast$}]{data, }
+\item[{const size\-\_\-t}]{count}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaabe89daaacdda4c42daf166e2f52f159}
+
+
+\-Append raw data to the end of the vector. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em data} & a pointer to the items to be inserted \\
+\hline
+{\em count} & the number of items to be inserted \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga1a1e63e13a4da5587aa0b9369580eb85}{
+\index{vector@{vector}!vector\-\_\-reserve@{vector\-\_\-reserve}}
+\index{vector\-\_\-reserve@{vector\-\_\-reserve}!vector@{vector}}
+\subsubsection[{vector\-\_\-reserve}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-reserve (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga1a1e63e13a4da5587aa0b9369580eb85}
+
+
+\-Reserve storage such that it can hold at last size items. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em size} & the new storage capacity \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_gae88ff6d21d8f963ba97790086d18506a}{
+\index{vector@{vector}!vector\-\_\-resize@{vector\-\_\-resize}}
+\index{vector\-\_\-resize@{vector\-\_\-resize}!vector@{vector}}
+\subsubsection[{vector\-\_\-resize}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-resize (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gae88ff6d21d8f963ba97790086d18506a}
+
+
+\-Resizes the vector to contain size items. 
+
+\-If the current size is less than size, additional items are appended and initialized with value. \-If the current size is greater than size, the vector is reduced to its first size elements.
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em size} & the new size \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga50c566682c6ec48ef8f7f4224c112d03}{
+\index{vector@{vector}!vector\-\_\-set@{vector\-\_\-set}}
+\index{vector\-\_\-set@{vector\-\_\-set}!vector@{vector}}
+\subsubsection[{vector\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{const size\-\_\-t}]{index, }
+\item[{const void $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga50c566682c6ec48ef8f7f4224c112d03}
+
+
+\-Replace an item. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em index} & the index of the item to be replaced \\
+\hline
+{\em item} & the new item \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga0b9c4f4cf48f0c52daa7852aeb7e531c}{
+\index{vector@{vector}!vector\-\_\-shrink@{vector\-\_\-shrink}}
+\index{vector\-\_\-shrink@{vector\-\_\-shrink}!vector@{vector}}
+\subsubsection[{vector\-\_\-shrink}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-shrink (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga0b9c4f4cf48f0c52daa7852aeb7e531c}
+
+
+\-Decrease capacity to fit actual size. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__vector_ga0103842074bb797fc685b33c0629c05a}{
+\index{vector@{vector}!vector\-\_\-size@{vector\-\_\-size}}
+\index{vector\-\_\-size@{vector\-\_\-size}!vector@{vector}}
+\subsubsection[{vector\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t vector\-\_\-size (
+\begin{DoxyParamCaption}
+\item[{const {\bf vector\-\_\-t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_ga0103842074bb797fc685b33c0629c05a}
+
+
+\-Returns the number of items. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+number of items 
+\end{DoxyReturn}
+\hypertarget{group__vector_gaee95bbc2e143793c2ffdf3f107aac1bd}{
+\index{vector@{vector}!vector\-\_\-sort@{vector\-\_\-sort}}
+\index{vector\-\_\-sort@{vector\-\_\-sort}!vector@{vector}}
+\subsubsection[{vector\-\_\-sort}]{\setlength{\rightskip}{0pt plus 5cm}void vector\-\_\-sort (
+\begin{DoxyParamCaption}
+\item[{{\bf vector\-\_\-t} $\ast$}]{self, }
+\item[{int($\ast$)(const void $\ast$, const void $\ast$)}]{cmp}
+\end{DoxyParamCaption}
+)}}
+\label{group__vector_gaee95bbc2e143793c2ffdf3f107aac1bd}
+
+
+\-Sort vector items according to cmp function. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em self} & a vector structure \\
+\hline
+{\em cmp} & a pointer a comparison function \\
+\hline
+\end{DoxyParams}
