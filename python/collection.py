@@ -48,27 +48,20 @@ class Collection(object):
     def set_colors(self, colors):
         """ """
 
-        colors = np.atleast_2d(colors)
-        for vertices,indices in self._buffer:
-            vertices['color'] = colors[ i % len(colors)]
+        self._buffer.vertices['color'] = colors
         self._dirty = True
 
 
     def set_scales(self, scales):
         """ """
 
-        scales = np.atleast_1d(scales)
-        for vertices,indices in self._buffer:
-            vertices['transform'][2] = scales[i % len(scales)]
+        self._buffer.vertices['transform'][:,2] = scales
         self._dirty = True
 
 
     def set_transforms(self, transforms):
         """ """
 
-        transforms = np.atleast_2d(transforms)
-        #for i,(vertices,indices) in enumerate(self._buffer):
-        #vertices['transform'] = transforms[i % len(transforms)]
         self._buffer.vertices['transform'] = transforms
         self._dirty = True
 
@@ -76,26 +69,20 @@ class Collection(object):
     def set_offsets(self, offsets):
         """ """
 
-        offsets = np.atleast_2d(offsets)
-        for vertices,indices in self._buffer:
-            vertices['transform'][0:2] = offsets[i % len(offsets)]
+        self._buffer.vertices['transform'][:,0:2] = offsets
         self._dirty = True
 
 
     def set_linewidths(self, linewidths):
         """ """
 
-        linewidths = np.atleast_1d(linewidths)
-        for vertices,indices in self._buffer:
-            vertices['thickness'][2] = linewidths[i % len(linewidths)]
+        self._buffer.vertices['thickness'] = linewidths
         self._dirty = True
 
 
     def set_antialiased(self, antialiased):
         """ """
-        antialiased = np.atleast_1d(antialiased)
-        for vertices,indices in self._buffer:
-            vertices['support'][2] = antialiased[i % len(antialiased)]
+        self._buffer.vertices['support'] = antialiased
         self._dirty = True
 
 
@@ -262,115 +249,67 @@ class CircleCollection(Collection):
         self._dirty = True
 
 
+class EllipseCollection(Collection):
 
-# -----------------------------------------------------------------------------
-def on_display( ):
-    gl.glClearColor(1,1,1,1)
-    gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
-    gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA)
-    gl.glEnable(gl.GL_BLEND)
-    grid.draw()
-    collection.draw()
-    glut.glutSwapBuffers()
-    
-def on_reshape( width, height ):
-    gl.glViewport( 0, 0, width, height )
-    gl.glMatrixMode( gl.GL_PROJECTION )
-    gl.glLoadIdentity( )
-    gl.glOrtho( 0, width, 0, height, -1000, 1000 )
-    gl.glMatrixMode( gl.GL_MODELVIEW )
-    gl.glLoadIdentity( )
-    grid.update()
+    def __init__ (self, centers, radii, linewidths = 1.0,
+                  edgecolors = (0,0,0,1), facecolors = (0,0,0,1),
+                  transforms = (0,0,1,0), antialiased = 0.75):
+        """ """
 
-
-def on_keyboard( key, x, y ):
-    if key == '\033':
-        sys.exit( )
-
-def on_motion( x, y ):
-    global offset, mouse
-    _,_,w,h = gl.glGetIntegerv(gl.GL_VIEWPORT)
-    y = h-y
-    dx,dy = x-mouse[0], y-mouse[1]
-    offset += dx,dy
-    mouse = x,y
-    collection.set_transforms( (offset[0],offset[1],int(zoom),0) )
-    grid._transform = offset[0],offset[1],int(zoom),0
-    glut.glutPostRedisplay()
-
-def on_passive_motion( x, y ):
-    global mouse
-    _,_,w,h = gl.glGetIntegerv(gl.GL_VIEWPORT)
-    mouse = x,h-y
-
-def on_scroll(dx, dy):
-    global offset, zoom, mouse
-    x,y = mouse
-    z = min(max(25.,zoom+0.001*dy*zoom), 1000.)
-    offset[0] = x-int(z)*(x-offset[0])/int(zoom)
-    offset[1] = y-int(z)*(y-offset[1])/int(zoom)
-    zoom = z
-
-    collection.set_transforms( (offset[0],offset[1],int(zoom),0) )
-    grid._transform = offset[0],offset[1],int(zoom),0
-
-    glut.glutPostRedisplay()
-
-def on_idle():
-    global t, t0, frames
-    t = glut.glutGet( glut.GLUT_ELAPSED_TIME )
-    frames = frames + 1
-    if t-t0 > 2500:
-        print "FPS : %.2f (%d frames in %.2f second)" % (frames*1000.0/(t-t0), frames, (t-t0)/1000.0)
-        t0, frames = t,0
-    glut.glutPostRedisplay()
+        Collection.__init__(self)
+        self.dtype = np.dtype( [('position',  'f4', 3),
+                                ('tex_coord', 'f4', 2),
+                                ('color',     'f4', 4),
+                                ('facecolor', 'f4', 4),
+                                ('transform', 'f4', 4),
+                                ('radius',    'f4', 2),
+                                ('thickness', 'f4', 1),
+                                ('support',   'f4', 1)] )
+        vertices = np.zeros(0, dtype = self.dtype)
+        self._buffer = VertexBuffer(vertices)
+        self.append(centers, radii, linewidths, edgecolors, facecolors, transforms, antialiased)
+        vert = open('./ellipse.vert').read()
+        frag = open('./ellipse.frag').read()
+        self._shader = Shader(vert,frag)
 
 
-if __name__ == '__main__':
-    import sys
 
-    # For OSX, see https://github.com/nanoant/osxglut
-    # GLUT for Mac OS X fork with Core Profile and scroll wheel support
-    try:
-        from ctypes import c_float
-        from OpenGL.GLUT.special import GLUTCallback
-        glutScrollFunc = GLUTCallback(
-            'Scroll', (c_float,c_float), ('delta_x','delta_y'),)
-    except:
-        glutScrollFunc = None
+    def append (self, centers, radii, linewidths = 1.0,
+                edgecolors = (0,0,0,1), facecolors = (0,0,0,1),
+                transforms = (0,0,1,0), antialiased = 0.75):
+        """ """
 
-    glut.glutInit( sys.argv )
-    glut.glutInitDisplayMode( glut.GLUT_DOUBLE | glut.GLUT_RGB | glut.GLUT_DEPTH )
-    glut.glutCreateWindow( sys.argv[0] )
-    glut.glutReshapeWindow( 512, 512 )
-    glut.glutDisplayFunc( on_display )
-    glut.glutReshapeFunc( on_reshape )
-    glut.glutKeyboardFunc( on_keyboard )
-    glut.glutIdleFunc( on_idle )
-    glut.glutMotionFunc( on_motion )
-    glut.glutPassiveMotionFunc( on_passive_motion )
-    glutScrollFunc( on_scroll )
+        linewidths  = np.atleast_1d(linewidths)
+        radii       = np.atleast_2d(radii)
+        edgecolors  = np.atleast_2d(edgecolors)
+        facecolors  = np.atleast_2d(facecolors)
+        transforms  = np.atleast_2d(transforms)
+        antialiased = np.atleast_1d(antialiased)
 
-    t0, t, frames = glut.glutGet(glut.GLUT_ELAPSED_TIME), 0, 0
+        for i,center in enumerate(centers):
+            thickness    = linewidths[ i % len(linewidths)]
+            edgecolor    = edgecolors[ i % len(edgecolors)]
+            facecolor    = facecolors[ i % len(facecolors)]
+            radius       = radii[ i % len(radii)]
+            transform    = transforms[ i % len(transforms)]
+            support      = antialiased[ i % len(antialiased)]
 
-    zoom = 100.0
-    offset = np.array([256.,256.])
-    mouse = 0,0
+            # Points as array
+            P = np.array(center).reshape(1,3).astype(float)
+            vertices = np.zeros(1, dtype = self.dtype)
+            vertices['position'] = P
+            vertices['thickness'] = thickness
+            vertices['color'] = edgecolor
+            vertices['facecolor'] = facecolor
+            vertices['radius'] = radius
+            vertices['support'] = support
+            vertices['transform'] = transform
+            vertices = np.repeat(vertices, 4)
+            vertices['tex_coord'][0::4] = -1,-1
+            vertices['tex_coord'][1::4] = +1,-1
+            vertices['tex_coord'][2::4] = +1,+1
+            vertices['tex_coord'][3::4] = -1,+1
+            indices = np.array([0,1,2,0,2,3], dtype=np.uint32)
+            self._buffer.append( vertices, indices )
 
-    n = 2500
-    centers = np.random.uniform( -10,10, (n,3) )
-    centers[:,2] = 0
-    radii = np.random.uniform( 0.05, 0.10, n )
-    edgecolors = 0,0,0,1
-    facecolors = np.random.uniform(0,1, (n,4))
-    collection = CircleCollection( centers, radii,
-                                   edgecolors=edgecolors, facecolors=facecolors )
-
-    collection.set_transforms( (offset[0],offset[1],zoom,0) )
-
-    grid = Grid()
-    grid._transform = offset[0],offset[1],zoom,0
-
-    glut.glutMainLoop( )
-
-
+        self._dirty = True

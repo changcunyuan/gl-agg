@@ -85,15 +85,14 @@ frag = """
     uniform sampler1D texture;
     void main() 
     { 
+        // Major grid
         float Mx = texture1D(texture, gl_TexCoord[0].x+.001).x;
         float My = texture1D(texture, gl_TexCoord[0].y+.001).y;
-        float mx = texture1D(texture, gl_TexCoord[0].x+.001).z;
-        float my = texture1D(texture, gl_TexCoord[0].y+.001).w;
-        
-        // Major grid
         float M = min(Mx,My);
 
         // Minor grid
+        float mx = texture1D(texture, gl_TexCoord[0].x+.001).z;
+        float my = texture1D(texture, gl_TexCoord[0].y+.001).w;
         float m = min(mx,my);
 
         vec4 color = major_grid_color;
@@ -359,7 +358,6 @@ if __name__ == '__main__':
                     ((w, h), (1,1)),
                     ((0, h), (0,1)) ],
                   dtype = [('position','f4',2), ('tex_coord','f4',2)] )
-#    V['position']  += 0.315, 0.315
     I = np.array( [0,1,2, 0,2,3 ], dtype=np.uint32 )
     axis = VertexBuffer(V,I)
 

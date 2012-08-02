@@ -37,7 +37,7 @@ import OpenGL.GL as gl
 import OpenGL.GLUT as glut
 
 from grid import Grid
-from collection import LineCollection
+from collection import EllipseCollection
 
 
 def on_display( ):
@@ -48,6 +48,7 @@ def on_display( ):
     grid.draw()
     collection.draw()
     glut.glutSwapBuffers()
+
     
 def on_reshape( width, height ):
     gl.glViewport( 0, 0, width, height )
@@ -73,8 +74,7 @@ def on_motion( x, y ):
     offset += dx,dy
     mouse = x,y
     collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
-    grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
+    grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
 
@@ -88,12 +88,12 @@ def on_scroll(dx, dy):
     global offset, zoom, mouse
     x,y = mouse
     z = min(max(25.,zoom+0.001*dy*zoom), 1000.)
-    offset[0] = x - int(z)*(x-offset[0])/int(zoom)
-    offset[1] = y - int(z)*(y-offset[1])/int(zoom)
+    offset[0] = x-int(z)*(x-offset[0])/int(zoom)
+    offset[1] = y-int(z)*(y-offset[1])/int(zoom)
     zoom = z
     collection.set_offsets( offset )
     collection.set_scales( int(zoom) )
-    grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
+    grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
 def on_wheel(wheel, direction, x, y):
@@ -141,38 +141,29 @@ if __name__ == '__main__':
     elif glut.glutMouseWheelFunc:
         glutMouseWheelFunc( on_wheel)
 
+
     t0, t, frames = glut.glutGet(glut.GLUT_ELAPSED_TIME), 0, 0
 
-    zoom = 100.0
+    zoom = 75.0
     offset = np.array([256.,256.])
     mouse = 0,0
 
+    n = 2500
+    centers = np.random.uniform( -5,5, (n,3) )
+    centers[:,2] = 0
+    radii = np.random.uniform( 0.05, 0.10, (n,2) )
+    edgecolors = 0,0,0,.5
+    facecolors = np.random.uniform(0,1, (n,4))
+    facecolors[:,3] = .5
+    transforms = np.zeros((n,4))
+    transforms[:,3] = np.random.uniform( 0.0, 2*np.pi, n )
+    collection = EllipseCollection( centers, radii, transforms = transforms,
+                                    edgecolors=edgecolors, facecolors=facecolors )
+    collection.set_offsets( (offset[0],offset[1]) )
+    collection.set_scales( int(zoom) )
 
-    n = 400
-    X = np.linspace(-4*np.pi,4*np.pi,n)
-    Y = np.cos(X)
-    Z = np.zeros(n)
-    segments = [zip(X,Y,Z)]
-    linewidths = 1.
-    colors = np.array([0,0,0,1])
-    caps  = 1,1
-    antialiased = 1.0 
-
-    collection = LineCollection( segments, linewidths, colors = colors,
-                                 caps = caps, antialiased = antialiased )
-    for i in range(1,25):
-        segments = [zip(X+i/10.0,Y,Z)]
-        collection.append( segments, linewidths, colors = colors,
-                           caps = caps, antialiased = antialiased )
-
-    segments = [ [ (0,-10000,-1), (0,+10000, -1) ],
-                 [ (-10000,0,-1), (+10000,0, -1) ] ]
-    collection.append( segments, 1.5, (0,0,0,1) )
     grid = Grid()
-
-    collection.set_transforms( (offset[0],offset[1],int(zoom),0) )
-    grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
-
+    grid.set_transforms( (offset[0],offset[1],int(zoom),0) )
 
     glut.glutMainLoop( )
 
