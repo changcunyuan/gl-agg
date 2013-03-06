@@ -72,8 +72,8 @@ def on_motion( x, y ):
     dx,dy = x-mouse[0], y-mouse[1]
     offset += dx,dy
     mouse = x,y
-    collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
     glut.glutPostRedisplay()
 
@@ -91,8 +91,8 @@ def on_scroll(dx, dy):
     offset[0] = x - int(z)*(x-offset[0])/int(zoom)
     offset[1] = y - int(z)*(y-offset[1])/int(zoom)
     zoom = z
-    collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
     glut.glutPostRedisplay()
 
@@ -157,7 +157,6 @@ if __name__ == '__main__':
     colors = np.array([0,0,0,1])
     caps  = 1,1
     antialiased = 1.0 
-
     collection = LineCollection( segments, linewidths, colors = colors,
                                  caps = caps, antialiased = antialiased )
     for i in range(1,25):
@@ -170,7 +169,7 @@ if __name__ == '__main__':
     collection.append( segments, 1.5, (0,0,0,1) )
     grid = Grid()
 
-    collection.set_transforms( (offset[0],offset[1],int(zoom),0) )
+    collection.set_transform( (offset[0],offset[1],int(zoom),0) )
     grid.set_transforms ( (offset[0],offset[1],int(zoom),0) )
 
 
