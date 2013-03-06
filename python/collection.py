@@ -43,35 +43,30 @@ from grid import Grid
 class Collection(object):
 
     def __init__(self):
-        pass
+        self._transform = [0.0,0.0,1.0,0.0]
+
+
+    def set_scale(self, scale):
+        """ """
+        self._transform[2] = scale
+
+
+    def set_offset(self, offset):
+        """ """
+        self._transform[0] = offset[0]
+        self._transform[1] = offset[1]
+
+
+    def set_transform(self, transform):
+        """ """
+        self._transform = list(transform)
+
 
     def set_colors(self, colors):
         """ """
 
         self._buffer.vertices['color'] = colors
         self._dirty = True
-
-
-    def set_scales(self, scales):
-        """ """
-
-        self._buffer.vertices['transform'][:,2] = scales
-        self._dirty = True
-
-
-    def set_transforms(self, transforms):
-        """ """
-
-        self._buffer.vertices['transform'] = transforms
-        self._dirty = True
-
-
-    def set_offsets(self, offsets):
-        """ """
-
-        self._buffer.vertices['transform'][:,0:2] = offsets
-        self._dirty = True
-
 
     def set_linewidths(self, linewidths):
         """ """
@@ -92,6 +87,7 @@ class Collection(object):
             self._buffer.upload()
             self._dirty = False
         self._shader.bind()
+        self._shader.uniformf('Transform', *self._transform)
         self._buffer.draw( gl.GL_TRIANGLES )
         self._shader.unbind()
 
@@ -116,7 +112,6 @@ class LineCollection(Collection):
                                 ('support',   'f4', 1)] )
         vertices = np.zeros(0, dtype = self.dtype)
         self._buffer = VertexBuffer(vertices)
-        self._dirty = True
         self.append(segments, linewidths, colors, caps, transforms, antialiased)
         vert = open('./line.vert').read()
         frag = open('./line.frag').read()

@@ -282,25 +282,25 @@ def update():
     L = np.linspace(0,w,n)
 
     t = major_grid[0]*zoom
-    I = np.arange(np.fmod(offset[0],t), np.fmod(offset[0],t)+w+t,t)
-    #I = np.logspace(np.log10(1), np.log10(2*w), 5)*zoom
+    #I = np.arange(np.fmod(offset[0],t), np.fmod(offset[0],t)+w+t,t)
+    I = np.logspace(np.log10(1), np.log10(2*w), 5)*zoom
     Z[:,0] = abs(L-I.reshape(len(I),1)).min(axis=0)
 
     t = minor_grid[0]*zoom
-    I = np.arange(np.fmod(offset[0],t), np.fmod(offset[0],t)+w+t,t)
-    #I = np.logspace(np.log10(1), np.log10(2*w), 50)*zoom
+    #I = np.arange(np.fmod(offset[0],t), np.fmod(offset[0],t)+w+t,t)
+    I = np.logspace(np.log10(1), np.log10(2*w), 50)*zoom
     Z[:,2] = abs(L-I.reshape(len(I),1)).min(axis=0)
 
     L = np.linspace(0,h,n)
 
     t = major_grid[1]*zoom
-    I = np.arange(np.fmod(offset[1],t), np.fmod(offset[1],t)+h+t,t)
-    #I = np.logspace(np.log10(1), np.log10(2*h), 5)*zoom
+    #I = np.arange(np.fmod(offset[1],t), np.fmod(offset[1],t)+h+t,t)
+    I = np.logspace(np.log10(1), np.log10(2*h), 5)*zoom
     Z[:,1] = abs(L-I.reshape(len(I),1)).min(axis=0)
 
     t = minor_grid[1]*zoom
-    I = np.arange(np.fmod(offset[1],t), np.fmod(offset[1],t)+h+t,t)
-    #I = np.logspace(np.log10(1), np.log10(2*h), 50)*zoom
+    #I = np.arange(np.fmod(offset[1],t), np.fmod(offset[1],t)+h+t,t)
+    I = np.logspace(np.log10(1), np.log10(2*h), 50)*zoom
     Z[:,3] = abs(L-I.reshape(len(I),1)).min(axis=0)
 
     gl.glBindTexture( gl.GL_TEXTURE_1D, texid )

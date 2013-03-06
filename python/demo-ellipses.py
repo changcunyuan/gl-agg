@@ -73,7 +73,7 @@ def on_motion( x, y ):
     dx,dy = x-mouse[0], y-mouse[1]
     offset += dx,dy
     mouse = x,y
-    collection.set_offsets( offset )
+    collection.set_offset( offset )
     grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
@@ -91,8 +91,8 @@ def on_scroll(dx, dy):
     offset[0] = x-int(z)*(x-offset[0])/int(zoom)
     offset[1] = y-int(z)*(y-offset[1])/int(zoom)
     zoom = z
-    collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
@@ -149,19 +149,18 @@ if __name__ == '__main__':
     mouse = 0,0
 
     n = 2500
-    centers = np.random.uniform( -5,5, (n,3) )
-    centers[:,2] = 0
+    centers = np.zeros((n,3))
     radii = np.random.uniform( 0.05, 0.10, (n,2) )
     edgecolors = 0,0,0,.5
     facecolors = np.random.uniform(0,1, (n,4))
     facecolors[:,3] = .5
-    transforms = np.zeros((n,4))
+    transforms = np.random.uniform( -5, +5, (n,4) )
+    transforms[:,2] = 1.0
     transforms[:,3] = np.random.uniform( 0.0, 2*np.pi, n )
     collection = EllipseCollection( centers, radii, transforms = transforms,
                                     edgecolors=edgecolors, facecolors=facecolors )
-    collection.set_offsets( (offset[0],offset[1]) )
-    collection.set_scales( int(zoom) )
-
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid = Grid()
     grid.set_transforms( (offset[0],offset[1],int(zoom),0) )
 

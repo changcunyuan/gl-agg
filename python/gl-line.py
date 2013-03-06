@@ -28,7 +28,6 @@ uniform float thickness;
 void main()
 {
     float t = thickness/2.0-support;
-
     vec4 color = gl_Color;
     vec2 uv = gl_TexCoord[0].xy;
     float d; 

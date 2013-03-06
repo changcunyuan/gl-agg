@@ -31,7 +31,9 @@
 // policies, either expressed or implied, of Nicolas P. Rougier.
 // ----------------------------------------------------------------------------
 
-// Transform to be applied as (x0,y0,scale,rotation)
+// Global transform to be applied as (x0,y0,scale,rotation)
+uniform vec4 Transform;
+// Local transform to be applied as (x0,y0,scale,rotation)
 attribute vec4 transform;
 // Line thickness
 attribute float thickness;
@@ -48,9 +50,9 @@ varying float _thickness;
 varying vec4 _facecolor;
 void main()
 {
-    vec2  translation = transform.xy;
-    float scale       = transform.z;
-    float rotation    = transform.w;
+    vec2  translation = transform.xy + Transform.xy;
+    float scale       = transform.z * Transform.z;
+    float rotation    = transform.w; // + Transform.w;
 
     _support = support;
     _radius = radius * scale;
@@ -66,12 +68,12 @@ void main()
     vertex.xy += vec2(w,w) * gl_MultiTexCoord0.xy;
     gl_TexCoord[0].xy = gl_MultiTexCoord0.xy * w;
 
-    mat4 rot= mat4( cos( rotation ), -sin( rotation ), 0.0, 0.0,
-                    sin( rotation ),  cos( rotation ), 0.0, 0.0,
-                                0.0,              0.0, 1.0, 0.0,
-                                0.0,              0.0, 0.0, 1.0 );
-    vertex *= rot;
-    vertex.xy += translation;
+    mat2 rot= mat2( cos( rotation ), -sin( rotation ),
+                    sin( rotation ),  cos( rotation ));
+    vertex.xy *= rot;
+    vertex.xy += transform.xy * scale;
+    vertex.xy += Transform.xy;
+
 
     gl_Position = gl_ModelViewProjectionMatrix * vertex;
     gl_FrontColor = vec4(gl_Color.rgb, gl_Color.a*alpha);

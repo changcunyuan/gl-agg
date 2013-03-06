@@ -73,8 +73,8 @@ def on_motion( x, y ):
     dx,dy = x-mouse[0], y-mouse[1]
     offset += dx,dy
     mouse = x,y
-    collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
@@ -92,8 +92,8 @@ def on_scroll(dx, dy):
     offset[0] = x-int(z)*(x-offset[0])/int(zoom)
     offset[1] = y-int(z)*(y-offset[1])/int(zoom)
     zoom = z
-    collection.set_offsets( offset )
-    collection.set_scales( int(zoom) )
+    collection.set_offset( offset )
+    collection.set_scale( int(zoom) )
     grid._transform = offset[0],offset[1],int(zoom),0
     glut.glutPostRedisplay()
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
     facecolors[:,3] = .5
     collection = CircleCollection( centers, radii,
                                    edgecolors=edgecolors, facecolors=facecolors )
-    collection.set_transforms( (offset[0],offset[1], int(zoom),0) )
+    collection.set_transform( (offset[0],offset[1], int(zoom),0) )
 
     grid = Grid()
     grid.set_transforms( (offset[0],offset[1],int(zoom),0) )
